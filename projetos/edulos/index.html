@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edulos Imobiliária | Encontre seu imóvel</title>
+  <meta name="description" content="Edulos Imobiliária - Encontre o imóvel dos seus sonhos com curadoria exclusiva e alto padrão.">
+  <meta property="og:title" content="Edulos Imobiliária | Encontre seu imóvel">
+  <meta property="og:description" content="Edulos Imobiliária - Encontre o imóvel dos seus sonhos com curadoria exclusiva e alto padrão.">
+  <meta property="og:site_name" content="Edulos Imobiliária">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              black: '#070709',
+              dark: '#0e0f12',
+              emerald: '#00FF87',
+              neon: '#00E676',
+              cyan: '#00F0FF'
+            }
+          },
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <!-- Spline 3D Viewer Module -->
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#060a18">
+  <link rel="apple-touch-icon" href="midia/app-icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Edulos">
+  <script>document.documentElement.classList.add('js-on')</script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#F5F5F7] text-[#1D1D1F] antialiased selection:bg-[#1D1D1F] selection:text-white">
+
+  <!-- CARREGAMENTO: "EDULOS" se enche com o mar à noite; no fim a câmera atravessa o "O" e entra no topo -->
+  <div id="siteLoader" class="site-loader" role="status" aria-label="Carregando o site da Edulos">
+    <svg class="ld-svg" id="ldSvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <clipPath id="ldFill"><rect id="ldFillR" x="0" y="900" width="1600" height="0"/></clipPath>
+        <mask id="ldWord" maskUnits="userSpaceOnUse" x="-6000" y="-6000" width="14000" height="16000"><rect x="-6000" y="-6000" width="14000" height="16000" fill="#000"/><g id="ldGlyphM" fill="#fff" stroke="#fff"></g></mask>
+        <mask id="ldHole" maskUnits="userSpaceOnUse" x="-6000" y="-6000" width="14000" height="16000"><rect x="-6000" y="-6000" width="14000" height="16000" fill="#fff"/><circle id="ldHoleC" cx="800" cy="450" r="0" fill="#000"/></mask>
+      </defs>
+      <g id="ldZoom">
+        <rect x="-6000" y="-6000" width="14000" height="16000" fill="#060a18" mask="url(#ldHole)"/>
+        <g mask="url(#ldWord)"><image id="ldImg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid slice" clip-path="url(#ldFill)"/></g>
+        <g id="ldGlyphS" fill="none" stroke="rgba(226,201,143,.42)" stroke-width="1.6"></g>
+      </g>
+    </svg>
+    <p class="ld-pct"><span id="ldPct">0</span>%<small>Residencial Edulos · frente-mar</small></p>
+  </div>
+
+  <!-- SEÇÃO 1: HERO — só a torre: ela é construída, do 17º ao 23º andar respondem ao mouse (no toque, uma fileira de andares) e o clique leva à planta 3D -->
+  <section id="hero" class="tower-hero" data-fase="obra">
+    <div class="hero-stage" id="heroStage">
+      <img class="stage-still" id="torreFim" alt="Torre residencial espelhada de frente para o mar, à noite" decoding="async">
+      <video class="stage-vid" id="vObra" muted playsinline preload="auto" aria-hidden="true"></video>
+      <div class="tower-shade" aria-hidden="true"></div>
+      <svg class="andares" id="andaresSvg" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+      <div class="hero-sweep" aria-hidden="true"></div>
+      <div class="zone-mark" id="zoneMark" aria-hidden="true"><i></i><span><b>17º a 23º</b> para visita</span></div>
+
+      <div class="floor-tip" id="floorTip" aria-hidden="true">
+        <div class="ft-row"><span class="ft-eyebrow">Andar</span><span class="st-pill" id="floorTipSt">Disponível</span></div>
+        <strong id="floorTipN">21º</strong>
+        <span class="ft-meta" id="floorTipS">Apto 211 · 200 m² · 3 suítes</span>
+        <b class="ft-price" id="floorTipP">R$ 9,3 mi</b>
+        <em>Clique para ver a planta <i class="fa-solid fa-arrow-right"></i></em>
+      </div>
+      <button type="button" class="tower-hint" id="towerHint"><i class="fa-regular fa-hand-pointer"></i><span>Passe o mouse do 17º ao 23º andar e clique para ver a planta</span></button>
+
+      <div class="floor-pick" id="floorPick">
+        <div class="fp-card" id="fpCard" aria-live="polite">
+          <div class="fp-info"><strong><span id="fpN">21º andar</span><span class="st-pill" id="fpSt">Disponível</span></strong><span id="fpS">Apto 211 · 200 m² · R$ 9,3 mi</span></div>
+          <button type="button" class="fp-go" id="fpGo">Ver a planta <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <p class="fp-label" id="fpLabel">Escolha um andar para ver a planta</p>
+        <div class="fp-chips" id="fpChips" role="group" aria-labelledby="fpLabel"></div>
+      </div>
+      <button type="button" class="obra-skip" id="obraSkip">Pular <i class="fa-solid fa-forward-step"></i></button>
+      <div class="obra-caption" id="obraCaption" aria-hidden="true"><span>Residencial Edulos · Frente-mar</span><i><b id="obraBar"></b></i></div>
+    </div>
+
+  </section>
+
+  <!-- O APARTAMENTO: passeio pelos ambientes (abre por cima da página ao escolher um andar) -->
+  <div class="ap-tour" id="apTour" role="dialog" aria-modal="true" aria-label="Passeio pelo apartamento" aria-hidden="true" data-fase="fechado">
+    <div class="ap-slides" id="apSlides"></div>
+    <video class="ap-vid" id="vIda" muted playsinline preload="none" aria-hidden="true"></video>
+    <video class="ap-vid" id="vVolta" muted playsinline preload="none" aria-hidden="true"></video>
+    <div class="ap-shade" aria-hidden="true"></div>
+
+    <section class="ap-plan" id="apPlan" aria-label="Planta do apartamento">
+      <div class="plan-wrap">
+        <div class="plan-stage" id="planStage">
+          <div class="plan-model" id="planModel">
+            <img class="plan-img" id="planImg" alt="Planta 3D mobiliada do apartamento: varanda gourmet na fachada, estar e jantar integrados, cozinha com ilha, suíte master com closet e banho, suítes 02 e 03" decoding="async">
+            <svg class="plan-svg" id="planSvg" viewBox="0 0 2261 1241" aria-hidden="true"></svg>
+            <div class="plan-pins" id="planPins"></div>
+            <span class="plan-mar" aria-hidden="true"><i class="fa-solid fa-arrow-up"></i>Mar</span>
+          </div>
+          <p class="plan-hint"><i class="fa-regular fa-hand-pointer"></i><span class="hint-desk">Clique em um ambiente para entrar</span><span class="hint-touch">Toque em um ambiente para entrar</span></p>
+        </div>
+        <aside class="plan-panel" id="planPanel">
+          <div class="pp-head">
+            <div class="pp-floor">
+              <button type="button" class="pp-step" id="ppPrev" aria-label="Andar de baixo"><i class="fa-solid fa-chevron-down"></i></button>
+              <span id="ppAndar">21º andar</span>
+              <button type="button" class="pp-step" id="ppNext" aria-label="Andar de cima"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+            <span class="st-pill" id="ppSt">Disponível</span>
+          </div>
+          <h2 class="pp-title">Apartamento <span id="ppApto">211</span></h2>
+          <ul class="pp-specs">
+            <li><b>200 m²</b><span>privativos</span></li>
+            <li><b>3</b><span>suítes</span></li>
+            <li><b>3</b><span>vagas</span></li>
+            <li><b>2,90 m</b><span>pé-direito</span></li>
+          </ul>
+          <p class="pp-price"><b id="ppPrice">R$ 9,3 mi</b><span>valor de tabela</span></p>
+          <p class="pp-desc">Um apartamento por andar. Sala, jantar e as três suítes ficam de frente para o mar, e a varanda gourmet ocupa a fachada inteira.</p>
+          <ol class="pp-rooms" id="ppRooms"></ol>
+          <a href="#contato" class="pp-cta" id="ppCta" data-whats="Olá! Quero agendar uma visita ao apartamento.">Agendar visita a este apartamento <i class="fa-solid fa-arrow-right"></i></a>
+        </aside>
+      </div>
+      <button type="button" class="plan-close" id="planClose"><i class="fa-solid fa-xmark"></i><span>Voltar para a torre</span></button>
+    </section>
+
+    <div class="ap-ui">
+      <button type="button" class="ap-sair" id="apSair"><i class="fa-solid fa-xmark"></i><span>Voltar à planta</span></button>
+      <div class="ap-andar" id="apAndar"><b>14º andar</b><span>Apto 141 · 200 m² · 3 suítes</span></div>
+      <div class="ap-caption">
+        <span class="ap-count" id="apCount">01 <i>/ 07</i></span>
+        <h2 class="ap-name ls-materialize" id="apName">Sala de estar</h2>
+        <p class="ap-desc" id="apDesc"></p>
+      </div>
+      <nav class="ap-dots" id="apDots" aria-label="Ambientes do apartamento"></nav>
+      <div class="ap-nav"><button type="button" id="apPrev" aria-label="Ambiente anterior"><i class="fa-solid fa-arrow-up"></i></button><button type="button" id="apNext" aria-label="Próximo ambiente"><i class="fa-solid fa-arrow-down"></i></button></div>
+      <div class="ap-hint" id="apHint" aria-hidden="true"><span class="ap-mouse"></span><b class="hint-desk">Role para o próximo ambiente</b><b class="hint-touch">Deslize para cima</b></div>
+      <div class="ap-end" id="apEnd">
+        <p class="ap-end-eyebrow">Fim do passeio</p>
+        <p class="ap-end-title">Gostou deste apartamento?</p>
+        <div class="ap-end-ctas">
+          <a href="#contato" data-whats="Olá! Fiz o passeio pelo apartamento frente-mar e quero agendar uma visita." class="ap-end-cta">Agendar uma visita <i class="fa-solid fa-arrow-right"></i></a>
+          <button type="button" class="ap-end-out" id="apEndSair">Voltar à planta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- planta ampliada -->
+  <div class="planta-box" id="plantaBox" role="dialog" aria-modal="true" aria-label="Planta do apartamento" aria-hidden="true">
+    <button type="button" class="planta-close" id="plantaClose" aria-label="Fechar a planta"><i class="fa-solid fa-xmark"></i></button>
+    <img src="midia/tour/planta-3d-d.webp" alt="Planta 3D mobiliada do apartamento: varanda gourmet de frente para o mar, estar e jantar, cozinha com ilha, suíte master com closet, suítes 02 e 03" loading="lazy">
+  </div>
+
+  <!-- SEÇÃO 2: APLICATIVO (foto real dos celulares + telas do app em código) -->
+  <section id="appSection" class="py-10 sm:py-14 lg:py-16 px-4 sm:px-6 relative bg-[#F5F5F7] overflow-hidden font-sans">
+    <div class="max-w-7xl mx-auto">
+      <div class="app-card relative w-full rounded-[30px] sm:rounded-[44px] overflow-hidden" id="appCard">
+
+        <div class="app-scene" id="appScene">
+          <img class="scene-img scene-d" src="midia/cel-d.webp" alt="Dois iPhones sobre uma mesa de pedra numa sala com vista para a cidade à noite" loading="lazy" data-w="2576" data-h="1438" data-pos="1" data-posy="0.32">
+          <img class="scene-img scene-m" src="midia/cel-m.webp" alt="" loading="lazy" data-w="1792" data-h="2400" data-pos="0.5" data-posy="0.25">
+
+          <svg class="app-arco" id="appArco" aria-hidden="true"><defs><linearGradient id="gArco" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#E2C98F" stop-opacity="0"/><stop offset=".35" stop-color="#E2C98F" stop-opacity=".9"/><stop offset="1" stop-color="#F3DDA6" stop-opacity=".7"/></linearGradient><mask id="mArco" maskUnits="userSpaceOnUse"><rect id="mArcoBg" fill="#fff"/><polygon id="mArco0" fill="#000"/><polygon id="mArco1" fill="#000"/></mask></defs><path id="arcoPath" fill="none" stroke="url(#gArco)" stroke-width="1.6" mask="url(#mArco)"/></svg>
+          <!-- tela do celular da frente: o app -->
+          <div class="scr scr-front" data-phone="0">
+            <div class="scr-island"></div>
+            <div class="scr-status"><span>9:41</span><span><i class="fa-solid fa-signal"></i> <i class="fa-solid fa-wifi"></i> <i class="fa-solid fa-battery-full"></i></span></div>
+            <div class="scr-views">
+              <div class="scr-view is-on">
+                <p class="scr-hello">Olá, Mariana!</p>
+                <p class="scr-sub">Encontre o imóvel ideal para você.</p>
+                <div class="scr-search"><i class="fa-solid fa-magnifying-glass"></i> Buscar imóveis...</div>
+                <div class="scr-icons"><span><i class="fa-solid fa-house"></i>Meus imóveis</span><span><i class="fa-regular fa-heart"></i>Favoritos</span><span><i class="fa-regular fa-calendar"></i>Agenda</span><span><i class="fa-regular fa-file-lines"></i>Documentos</span></div>
+                <div class="scr-card"><img src="midia/serra-piscina-app.webp" alt=""><div><strong>Seu próximo imóvel está mais perto.</strong><b>Ver imóveis <i class="fa-solid fa-arrow-right"></i></b></div></div>
+              </div>
+              <div class="scr-view">
+                <p class="scr-title">Proposta · Apto 211</p>
+                <ol class="scr-steps"><li class="ok"><i class="fa-solid fa-check"></i>Proposta aceita</li><li class="ok"><i class="fa-solid fa-check"></i>Documentos enviados</li><li class="now"><i class="fa-solid fa-circle-notch"></i>Análise do banco</li><li><i class="fa-regular fa-circle"></i>Assinatura</li><li><i class="fa-regular fa-circle"></i>Entrega das chaves</li></ol>
+              </div>
+              <div class="scr-view">
+                <p class="scr-title">Sua obra · Apto 211</p>
+                <div class="scr-obra"><b>68%</b><span>concluída</span><i><em></em></i><small>Entrega prevista: dez/2027</small></div>
+                <ol class="scr-steps"><li class="ok"><i class="fa-solid fa-check"></i>Estrutura</li><li class="now"><i class="fa-solid fa-circle-notch"></i>Fachada</li><li><i class="fa-regular fa-circle"></i>Acabamentos</li><li><i class="fa-regular fa-circle"></i>Vistoria</li><li><i class="fa-regular fa-circle"></i>Entrega das chaves</li></ol>
+              </div>
+              <div class="scr-view">
+                <p class="scr-title">Documentos</p>
+                <div class="scr-doc"><i class="fa-regular fa-file-pdf"></i><span>Contrato de compra e venda</span><b class="sign">Assinar</b></div>
+                <div class="scr-doc"><i class="fa-regular fa-id-card"></i><span>RG e CPF</span><b>Enviado</b></div>
+                <div class="scr-doc"><i class="fa-regular fa-file-lines"></i><span>Comprovante de renda</span><b>Enviado</b></div>
+                <div class="scr-doc"><i class="fa-solid fa-house-circle-check"></i><span>Matrícula do imóvel</span><b>Conferida</b></div>
+              </div>
+            </div>
+            <div class="scr-tabbar"><i class="fa-solid fa-house"></i><i class="fa-solid fa-magnifying-glass"></i><i class="fa-regular fa-heart"></i><i class="fa-regular fa-user"></i></div>
+          </div>
+
+          <!-- tela do celular de trás: bloqueio -->
+          <div class="scr scr-back" data-phone="1">
+            <div class="scr-island"></div>
+            <span class="lock-date">Segunda, 17 de novembro</span>
+            <span class="lock-time">9:41</span>
+            <div class="lock-note"><i class="fa-solid fa-house"></i><div><strong>Edulos</strong><span>Sua visita de sábado, 10h, está confirmada.</span></div></div>
+          </div>
+
+          <!-- mensagens coladas ao celular -->
+          <div class="app-notif" data-anchor="0" data-at="0.28"><i class="fa-regular fa-calendar-check"></i><div><strong>Visita confirmada</strong><span>Sábado, 10h · Casa da Serra</span></div></div>
+          <div class="app-notif" data-anchor="0" data-at="0.62"><i class="fa-solid fa-check"></i><div><strong>Proposta aceita</strong><span>Apto 211 · agora</span></div></div>
+        </div>
+
+        <div class="app-copy relative z-10" id="appTextContent">
+          <span class="app-pill"><i class="fa-solid fa-mobile-screen"></i>Nosso aplicativo</span>
+          <h2 class="app-h2">Seu imóvel,<br><span class="sheen-gold sheen-app">na palma da sua mão</span></h2>
+          <p class="app-lead">Acompanhe pelo celular cada etapa do seu apartamento, da assinatura do contrato à entrega das chaves.</p>
+          <div class="app-feats">
+            <div class="app-feat" data-screen="1" tabindex="0"><i class="fa-solid fa-file-signature"></i><div><h4>Proposta e financiamento</h4><p>Status da proposta e do crédito em tempo real.</p></div></div>
+            <div class="app-feat" data-screen="3" tabindex="0"><i class="fa-regular fa-file-lines"></i><div><h4>Documentos e assinatura</h4><p>Envie e assine tudo pelo celular, com segurança.</p></div></div>
+            <div class="app-feat" data-screen="2" tabindex="0"><i class="fa-solid fa-building"></i><div><h4>Andamento da obra</h4><p>Percentual e etapas da construção, mês a mês.</p></div></div>
+            <div class="app-feat" data-screen="0" tabindex="0"><i class="fa-solid fa-key"></i><div><h4>Entrega das chaves</h4><p>Vistoria agendada e aviso do dia da entrega.</p></div></div>
+          </div>
+          <div class="app-ctas">
+            <button type="button" class="btn-gold" id="btnInstalar"><i class="fa-solid fa-download text-base"></i> Instalar o app</button>
+            <a href="#contato" data-whats="Olá! Quero falar com um especialista da Edulos." class="btn-ghost-light"><i class="fa-brands fa-whatsapp text-base"></i> Falar com um especialista</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: A OBRA E O APARTAMENTO — fotografia grande, pouca informação, a pessoa explora no próprio ritmo -->
+  <section id="apartamento" class="ap-section ap-v2 font-sans">
+
+    <!-- a obra -->
+    <div class="ob2" id="ob2">
+      <figure class="ob2-foto" id="ob2Foto">
+          <img src="midia/tour/etapa-1.webp" alt="Terreno com as fundações e os subsolos concluídos" loading="lazy" decoding="async">
+          <img src="midia/tour/etapa-2.webp" alt="Estrutura de concreto da torre concluída, com a grua no topo" loading="lazy" decoding="async">
+          <img src="midia/tour/etapa-3.webp" alt="Torre com paredes de alvenaria e instalações" loading="lazy" decoding="async">
+          <img src="midia/tour/etapa-4.webp" alt="Fachada de vidro sendo instalada na torre" loading="lazy" decoding="async" class="is-on">
+          <img src="midia/tour/etapa-5.webp" alt="Torre com a fachada pronta, ao entardecer" loading="lazy" decoding="async">
+          <img src="midia/tour/etapa-6.webp" alt="Torre pronta e iluminada à noite, de frente para o mar" loading="lazy" decoding="async">
+        <figcaption class="ob2-cap">
+          <span class="ob2-tag" id="ob2Tag">Foto da obra · nov/2026</span>
+          <span class="ap-eyebrow">Evolução da obra</span>
+          <h3>Um novo jeito de viver<br>está tomando forma.</h3>
+          <p><b>68% concluída</b> · entrega prevista em dezembro de 2027</p>
+        </figcaption>
+      </figure>
+      <div class="tl2">
+        <ol class="tl2-lista" id="tl2">
+          <span class="tl2-linha" aria-hidden="true"><b id="tl2Linha"></b></span>
+          <span class="tl2-chave" id="tl2Chave" aria-hidden="true"><i class="fa-solid fa-key"></i></span>
+        <li><button type="button" class="tl2-st is-past" data-i="0" data-tag="Foto da obra · ago/2025" data-d="Estacas, blocos e subsolos prontos."><span>Ago 2025</span><b>Fundação</b></button></li>
+        <li><button type="button" class="tl2-st is-past" data-i="1" data-tag="Foto da obra · jun/2026" data-d="As 28 lajes de concreto de pé."><span>Jun 2026</span><b>Estrutura</b></button></li>
+        <li><button type="button" class="tl2-st is-past" data-i="2" data-tag="Foto da obra · out/2026" data-d="Paredes fechadas, elétrica e hidráulica passando."><span>Out 2026</span><b>Alvenaria e instalações</b></button></li>
+        <li><button type="button" class="tl2-st is-on now" data-i="3" data-tag="Foto da obra · nov/2026" data-d="A pele de vidro sobe andar por andar."><span>Agora</span><b>Fachada</b></button></li>
+        <li><button type="button" class="tl2-st" data-i="4" data-tag="Projeção" data-d="Pisos, marcenaria, metais e iluminação."><span>2027</span><b>Acabamentos</b></button></li>
+        <li><button type="button" class="tl2-st" data-i="5" data-tag="Projeção" data-d="Vistoria e mudança."><span>Dez 2027</span><b>Entrega das chaves</b></button></li>
+        </ol>
+        <p class="tl2-desc" id="tl2Desc">A pele de vidro sobe andar por andar.</p>
+      </div>
+    </div>
+
+    <!-- a planta -->
+    <div class="pl2" id="pl2">
+      <div class="pl2-in">
+        <div class="pl2-txt">
+          <span class="ap-eyebrow">O apartamento</span>
+          <h3>Por dentro do 21º andar</h3>
+          <p>Um apartamento por andar, todo voltado para o mar. Passe pela planta e escolha por onde começar.</p>
+          <p class="pl2-specs">200 m² · 3 suítes · varanda de 37 m² · pé-direito de 2,90 m</p>
+          <button type="button" class="pl2-link" data-tour="21">Fazer o passeio pelo apartamento <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="pl2-planta" id="pl2Planta">
+          <img class="pl2-img" src="midia/tour/planta-3d-d.webp" alt="Planta 3D mobiliada do apartamento tipo" loading="lazy" decoding="async">
+          <svg class="pl2-svg" id="pl2Svg" viewBox="0 0 2261 1241" aria-hidden="true"></svg>
+          <div class="pl2-pins" id="pl2Pins"></div>
+          <span class="pl2-tip" id="pl2Tip" aria-hidden="true"><b></b><span></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- morar lá -->
+    <div class="vida" id="vida">
+      <header class="vida-head">
+        <span class="ap-eyebrow">Os ambientes</span>
+        <h3>Como é morar aqui</h3>
+      </header>
+      <article class="vd" id="vida-0" data-i="0">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-sala.webp" alt="Sala de estar" loading="lazy" decoding="async"><span class="vd-obra"><img src="midia/tour/obra-sala.webp" alt="" loading="lazy" decoding="async"></span><span class="vd-ab" role="group" aria-label="Ver o ambiente hoje ou pronto"><button type="button" data-v="obra">Hoje</button><button type="button" data-v="pronto" class="is-on">Pronto</button></span><button type="button" class="vd-full" data-i="0" aria-label="Abrir Sala de estar em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">01</span>
+          <h4>Sala de estar</h4>
+          <p>No fim da tarde, a luz do mar atravessa a parede de vidro e chega até o sofá.</p>
+          <span class="vd-m">31 m²</span>
+          <span class="vd-mini" data-i="0" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <article class="vd vd-alt" id="vida-3" data-i="3">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-varanda.webp" alt="Varanda gourmet" loading="lazy" decoding="async"><button type="button" class="vd-full" data-i="3" aria-label="Abrir Varanda gourmet em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">02</span>
+          <h4>Varanda gourmet</h4>
+          <p>Churrasco de domingo com a orla inteira de vista. Cabe a família toda.</p>
+          <span class="vd-m">37 m²</span>
+          <span class="vd-mini" data-i="3" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <article class="vd" id="vida-1" data-i="1">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-jantar.webp" alt="Sala de jantar" loading="lazy" decoding="async"><button type="button" class="vd-full" data-i="1" aria-label="Abrir Sala de jantar em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">03</span>
+          <h4>Sala de jantar</h4>
+          <p>Mesa para oito, colada na janela. O jantar tem o mar como fundo.</p>
+          <span class="vd-m">18 m²</span>
+          <span class="vd-mini" data-i="1" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <article class="vd vd-alt" id="vida-2" data-i="2">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-cozinha.webp" alt="Cozinha gourmet" loading="lazy" decoding="async"><button type="button" class="vd-full" data-i="2" aria-label="Abrir Cozinha gourmet em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">04</span>
+          <h4>Cozinha gourmet</h4>
+          <p>A ilha de mármore é onde todo mundo acaba conversando.</p>
+          <span class="vd-m">24 m²</span>
+          <span class="vd-mini" data-i="2" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <article class="vd" id="vida-4" data-i="4">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-suite-master.webp" alt="Suíte master" loading="lazy" decoding="async"><button type="button" class="vd-full" data-i="4" aria-label="Abrir Suíte master em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">05</span>
+          <h4>Suíte master</h4>
+          <p>Você acorda de frente para o mar. O closet fica ao lado, com portas de vidro.</p>
+          <span class="vd-m">34 m²</span>
+          <span class="vd-mini" data-i="4" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <article class="vd vd-alt" id="vida-5" data-i="5">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-banho-master.webp" alt="Banho da suíte" loading="lazy" decoding="async"><button type="button" class="vd-full" data-i="5" aria-label="Abrir Banho da suíte em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">06</span>
+          <h4>Banho da suíte</h4>
+          <p>Banheira de imersão e cuba dupla, para dividir a rotina sem pressa.</p>
+          <span class="vd-m">12 m²</span>
+          <span class="vd-mini" data-i="5" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <article class="vd" id="vida-6" data-i="6">
+        <figure class="vd-foto"><img class="vd-img" src="midia/tour/gal-suite-2.webp" alt="Suítes 02 e 03" loading="lazy" decoding="async"><button type="button" class="vd-full" data-i="6" aria-label="Abrir Suítes 02 e 03 em tela cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button></figure>
+        <div class="vd-txt">
+          <span class="vd-n">07</span>
+          <h4>Suítes 02 e 03</h4>
+          <p>Dois quartos no mesmo padrão, cada um com a sua vista.</p>
+          <span class="vd-m">22 m² cada</span>
+          <span class="vd-mini" data-i="6" aria-hidden="true"><img src="midia/tour/planta-3d-m.webp" alt=""><svg viewBox="0 0 2261 1241"></svg></span>
+        </div>
+      </article>
+      <div class="vida-fim">
+        <p>Gostou do 21º andar?</p>
+        <a href="#contato" class="btn-glass" data-whats="Olá! Vi o apartamento do 21º andar no site e quero agendar uma visita.">Agendar uma visita <i class="fa-solid fa-arrow-right"></i></a>
+        <p class="vida-nota">Imagens, datas e percentuais ilustrativos.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <footer id="contato"
+    class="relative border-t border-black/10 py-16 sm:py-20 px-6 font-sans text-xs text-[#86868B] bg-[#F5F5F7] overflow-hidden">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 relative z-10">
+      <!-- Col 1 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-xl bg-[#1D1D1F] text-white font-bold flex items-center justify-center font-sans shadow-sm">
+            ED</div>
+          <span class="font-bold text-lg text-[#1D1D1F] font-sans tracking-tight">EDULOS IMOBILIÁRIA</span>
+        </div>
+        <p class="text-[#86868B] text-xs leading-relaxed font-sans font-light">
+          Assessoria imobiliária de alta performance dedicada a imóveis de alto padrão e propriedades exclusivas.
+        </p>
+      </div>
+
+      <!-- Col 2 -->
+      <div>
+        <h5 class="text-[#1D1D1F] font-bold mb-4 uppercase tracking-wider font-sans text-xs">// LOCALIZAÇÃO
+        </h5>
+        <p class="text-[#86868B] leading-relaxed font-sans font-light">
+          Av. Europa, 1200 - Jardins<br>
+          São Paulo - SP, 01449-000<br>
+          <span class="text-[#1D1D1F] font-normal">Atendimento exclusivamente com agendamento prévio.</span>
+        </p>
+      </div>
+
+      <!-- Col 3 -->
+      <div>
+        <h5 class="text-[#1D1D1F] font-bold mb-4 uppercase tracking-wider font-sans text-xs">// HORÁRIOS</h5>
+        <p class="text-[#86868B] leading-relaxed font-sans font-light">
+          Segunda a Sexta: 08:00 - 19:00<br>
+          Sábado: 08:00 - 14:00<br>
+          <span class="text-[#1D1D1F] font-normal">Domingo: Fechado (Atendimento VIP)</span>
+        </p>
+      </div>
+
+      <!-- Col 4 -->
+      <div>
+        <h5 class="text-[#1D1D1F] font-bold mb-4 uppercase tracking-wider font-sans text-xs">// REDES &
+          CONTATO</h5>
+        <div class="flex gap-4 text-lg text-[#1D1D1F]">
+          <a href="https://instagram.com/" target="_blank" rel="noopener"
+            class="w-10 h-10 rounded-xl bg-white border border-black/10 flex items-center justify-center text-[#1D1D1F] hover:bg-[#1D1D1F] hover:text-white transition-all shadow-sm"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="#contato" data-whats="Olá! Vim pelo site da Edulos."
+            class="w-10 h-10 rounded-xl bg-white border border-black/10 flex items-center justify-center text-[#1D1D1F] hover:bg-[#1D1D1F] hover:text-white transition-all shadow-sm"><i
+              class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener"
+            class="w-10 h-10 rounded-xl bg-white border border-black/10 flex items-center justify-center text-[#1D1D1F] hover:bg-[#1D1D1F] hover:text-white transition-all shadow-sm"><i
+              class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto pt-8 border-t border-black/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-[#86868B] relative z-10 font-sans">
+      <div>© 2026 Edulos Imobiliária. Todos os direitos reservados.</div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-[#1D1D1F] transition-colors">Termos de Privacidade</a>
+        <a href="#" class="hover:text-[#1D1D1F] transition-colors">Atendimento Exclusivo</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- instruções para instalar o app (quando o navegador não abre o pedido sozinho) -->
+  <div class="inst-box" id="instBox" role="dialog" aria-modal="true" aria-labelledby="instTitle" aria-hidden="true">
+    <div class="inst-card">
+      <button type="button" class="inst-close" id="instClose" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+      <img src="midia/app-icon-192.png" alt="" class="inst-icon">
+      <p class="inst-title" id="instTitle">Instale o app da Edulos</p>
+      <ol class="inst-steps" id="instSteps"></ol>
+    </div>
+  </div>
+
+  <!-- Custom JS -->
+  <script src="main.js"></script>
+</body>
+
+</html>

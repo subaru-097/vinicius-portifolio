@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A3 Motors | Seminovos e supercarros</title>
+  <meta name="description" content="Seminovos e supercarros com procedência garantida. Escolha a marca, filtre e fale com um consultor.">
+
+  <!-- Fontes, Tailwind e ícones locais (sem depender de CDN) -->
+  <link rel="stylesheet" href="vendor/fonts.css">
+  <link rel="stylesheet" href="vendor/tw.css">
+  <link rel="stylesheet" href="vendor/fa.css">
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#F5F5F7] text-[#1D1D1F] antialiased selection:bg-[#1D1D1F] selection:text-white">
+
+  <!-- PRELOADER SPLIT SCREEN (EDOLUS SEQUENTIAL LETTERS) -->
+  <div id="preloader" class="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto overflow-hidden">
+    <!-- Cortina Superior (Metade 50%) -->
+    <div id="preloaderTop" class="absolute top-0 left-0 w-full h-[50%] bg-black transition-transform duration-[1800ms] ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
+    
+    <!-- Cortina Inferior (Metade 50%) -->
+    <div id="preloaderBottom" class="absolute bottom-0 left-0 w-full h-[50%] bg-black transition-transform duration-[1800ms] ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
+
+    <!-- Conteúdo Central: Logo EDOLUS em Letras Individuais & Porcentagem -->
+    <div id="preloaderContent" class="relative z-10 flex flex-col items-center justify-center transition-all duration-500">
+      <!-- Container Flexível das Letras EDOLUS -->
+      <div id="preloaderLogo" class="preloader-logo-flex flex items-center gap-1 sm:gap-2 select-none overflow-hidden">
+        <span class="preloader-letter">A</span>
+        <span class="preloader-letter">3</span>
+        <span class="preloader-letter" style="width:.45em"></span>
+        <span class="preloader-letter">M</span>
+        <span class="preloader-letter">O</span>
+        <span class="preloader-letter">T</span>
+        <span class="preloader-letter">O</span>
+        <span class="preloader-letter">R</span>
+        <span class="preloader-letter">S</span>
+      </div>
+
+      <!-- Counter de Porcentagem (0% a 100%) -->
+      <div id="preloaderPercent" class="text-xs sm:text-sm font-mono tracking-[0.3em] text-white/70 mt-6 font-semibold">
+        0%
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSÃO 1: HERO SECTION -->
+  <section id="hero" class="hero-pin-container">
+    <!-- Vídeo de fundo: o Audi R8 entra na garagem e para -->
+    <video id="heroVideo" class="hero-video-bg" src="hero-audi.mp4" poster="hero-audi-poster.jpg" muted playsinline preload="auto"></video>
+    <div class="hero-veil" aria-hidden="true"></div>
+
+    <!-- Dark Luxury Gradients Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Hero Container Principal (Textos Limpos Flutuantes) -->
+    <div class="relative z-50 max-w-6xl mx-auto px-5 sm:px-6 w-full flex flex-col sm:flex-row items-center justify-center sm:justify-between py-8 sm:py-12 min-h-[100dvh]">
+      
+      <!-- Textos e CTAs Limpos Diretos sobre o Vídeo -->
+      <div class="hero-copy max-w-2xl w-full relative flex flex-col items-center text-center sm:items-start sm:text-left my-auto">
+        <!-- Título Principal (H1) -->
+        <h1 class="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-light tracking-wider leading-[1.15] mb-3 sm:mb-4 text-white">
+          Seu Próximo <br class="hidden sm:inline" />
+          <span class="shimmer-gold-text font-normal">Carro Está Aqui</span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-white/90 text-sm sm:text-base md:text-lg font-light leading-relaxed mb-6 sm:mb-8 max-w-md sm:max-w-lg mx-auto sm:mx-0">
+          Seminovos revisados e novos com procedência garantida.
+        </p>
+
+        <!-- Botões de Ação (CTA) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
+          <a href="#estoque" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all duration-300 w-full sm:w-auto shadow-lg backdrop-blur-md active:scale-95">
+            <span>Ver Estoque</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Container 100% W-Full de Centralização Absoluta do Indicador de Scroll -->
+    <div class="hero-scroll absolute bottom-5 sm:bottom-8 left-0 w-full flex justify-center z-50 pointer-events-none">
+      <a href="#estoque" class="flex flex-col items-center gap-1.5 sm:gap-2 animate-bounce text-gray-400 hover:text-white transition-colors text-[10px] sm:text-xs tracking-wider uppercase cursor-pointer pointer-events-auto">
+        <span>Role para baixo</span>
+        <i class="fa-solid fa-chevron-down text-xs text-teal-400"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 2: ESTOQUE (escolha a marca na pilha de cards e filtre) -->
+  <section id="estoque" class="relative bg-[#0a0a0a] text-white font-sans overflow-x-clip">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.04)_0%,_transparent_60%)] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20 pb-16 sm:pb-24 relative z-10">
+
+      <header class="text-center mb-6 sm:mb-8">
+        <h2 class="text-3xl sm:text-4xl font-medium uppercase text-white tracking-tight leading-tight">
+          Principais <span class="shimmer-gold-text font-extrabold">marcas</span>
+        </h2>
+        <p class="text-zinc-400 text-xs sm:text-sm max-w-2xl mx-auto mt-2 font-light leading-relaxed">Escolha a marca nos cards ou use a busca logo abaixo.</p>
+      </header>
+
+      <!-- Pilha de cards das marcas -->
+      <div class="brand-deck" id="brandDeck">
+        <button type="button" class="brand-deck__arrow brand-deck__arrow--prev" id="deckPrev" aria-label="Marca anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="brand-deck__stage" id="deckStage" role="listbox" aria-label="Marcas"></div>
+        <button type="button" class="brand-deck__arrow brand-deck__arrow--next" id="deckNext" aria-label="Próxima marca"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="brand-deck__bars" id="deckBars" aria-hidden="true"></div>
+
+
+      <!-- Busca: marca, modelo, ano e preço (barra de vidro) -->
+      <form id="filtro" class="sbar" role="search" onsubmit="return false">
+          <div class="sbar__field sbar__field--marca">
+            <span class="sbar__label" id="lb-marca">Marca</span>
+            <div class="gsel" data-key="marca">
+              <button type="button" class="gsel__btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-marca"><span class="gsel__val" data-ph="Marca">Marca</span><i class="fa-solid fa-chevron-down gsel__chev"></i></button>
+              <ul class="gsel__list" role="listbox" aria-labelledby="lb-marca"></ul>
+            </div>
+          </div>
+          <div class="sbar__field sbar__field--modelo">
+            <span class="sbar__label" id="lb-modelo">Modelo</span>
+            <div class="gsel" data-key="modelo">
+              <button type="button" class="gsel__btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-modelo"><span class="gsel__val" data-ph="Modelo">Modelo</span><i class="fa-solid fa-chevron-down gsel__chev"></i></button>
+              <ul class="gsel__list" role="listbox" aria-labelledby="lb-modelo"></ul>
+            </div>
+          </div>
+          <div class="sbar__field sbar__field--anoDe">
+            <span class="sbar__label" id="lb-anoDe">Ano de</span>
+            <div class="gsel" data-key="anoDe">
+              <button type="button" class="gsel__btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-anoDe"><span class="gsel__val" data-ph="Selecione">Selecione</span><i class="fa-solid fa-chevron-down gsel__chev"></i></button>
+              <ul class="gsel__list" role="listbox" aria-labelledby="lb-anoDe"></ul>
+            </div>
+          </div>
+          <div class="sbar__field sbar__field--anoAte">
+            <span class="sbar__label" id="lb-anoAte">Ano até</span>
+            <div class="gsel" data-key="anoAte">
+              <button type="button" class="gsel__btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-anoAte"><span class="gsel__val" data-ph="Selecione">Selecione</span><i class="fa-solid fa-chevron-down gsel__chev"></i></button>
+              <ul class="gsel__list" role="listbox" aria-labelledby="lb-anoAte"></ul>
+            </div>
+          </div>
+          <div class="sbar__field sbar__field--precoDe">
+            <span class="sbar__label" id="lb-precoDe">Preço de</span>
+            <div class="gsel" data-key="precoDe">
+              <button type="button" class="gsel__btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-precoDe"><span class="gsel__val" data-ph="Selecione">Selecione</span><i class="fa-solid fa-chevron-down gsel__chev"></i></button>
+              <ul class="gsel__list" role="listbox" aria-labelledby="lb-precoDe"></ul>
+            </div>
+          </div>
+          <div class="sbar__field sbar__field--precoAte">
+            <span class="sbar__label" id="lb-precoAte">Preço até</span>
+            <div class="gsel" data-key="precoAte">
+              <button type="button" class="gsel__btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-precoAte"><span class="gsel__val" data-ph="Selecione">Selecione</span><i class="fa-solid fa-chevron-down gsel__chev"></i></button>
+              <ul class="gsel__list" role="listbox" aria-labelledby="lb-precoAte"></ul>
+            </div>
+          </div>
+          <button type="submit" class="sbar__go" id="sbarGo"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+      </form>
+
+      <header class="text-center mt-14 sm:mt-16 mb-2">
+        <h2 class="text-3xl sm:text-4xl font-medium uppercase text-white tracking-tight leading-tight">
+          Veículos em <span class="shimmer-gold-text font-extrabold">destaque</span>
+        </h2>
+      </header>
+
+      <div class="flex items-center justify-between mt-8 mb-4">
+        <p id="fCount" class="text-xs font-semibold uppercase tracking-widest text-zinc-400" aria-live="polite"></p>
+        <button type="button" id="fClear" class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Limpar filtros</button>
+      </div>
+      <div id="carGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
+      <div id="carEmpty" class="hidden rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
+        <p class="text-lg font-bold">Nenhum carro com esse filtro agora</p>
+        <p class="text-zinc-400 text-sm mt-1">Fale com um consultor que a gente encontra o carro para você.</p>
+        <a href="https://wa.me/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-full bg-white/[0.06] border border-white/20 text-sm font-semibold hover:text-emerald-400 hover:border-emerald-500/40 transition-colors"><i class="fa-brands fa-whatsapp text-emerald-400"></i> Falar com um consultor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SESSÃO CTA: APLICATIVO EXCLUSIVO (DARK PREMIUM VITRIFICADO IMPONENTE) -->
+  <section id="appSection"
+    class="py-10 sm:py-14 lg:py-16 px-4 sm:px-6 relative bg-[#0a0a0a] text-white font-sans">
+    <!-- Glow Radial Sutil de Fundo Dark -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.03)_0%,_transparent_70%)] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+      <!-- Card Envolvente Dark Vitrificado Imponente -->
+      <div
+        class="apple-glass-card app-card relative w-full rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 bg-white/[0.03] backdrop-blur-md border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+
+        <!-- 2 Columns Grid Structure -->
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+
+          <!-- Coluna da Esquerda: Conteúdo & CTA -->
+          <div id="appTextContent" class="lg:col-span-7 space-y-4">
+
+            <!-- Título Principal com Dourado Animado na 2ª Linha (Destaque Imponente) -->
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium uppercase text-white tracking-tight leading-tight font-sans">
+              Seu próximo carro, <br class="hidden sm:block">
+              <span class="shimmer-gold-text font-extrabold">a um toque de distância</span>
+            </h2>
+
+            <!-- Subtítulo em Cinza Claro Confortável -->
+            <p class="text-zinc-300 text-sm sm:text-base leading-relaxed font-light max-w-2xl">
+              Fale direto com especialistas, agende seu test-drive e acompanhe a aprovação do financiamento sem burocracia.
+            </p>
+
+            <!-- Lista de Benefícios do App (4 Cards Espaçados e Confortáveis) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 font-sans">
+              <!-- Card 1 -->
+              <div class="group relative bg-white/[0.03] hover:bg-white/[0.07] p-3.5 sm:p-4 rounded-xl border border-white/10 hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer overflow-hidden backdrop-blur-md">
+                <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <h4 class="font-bold text-xs sm:text-sm text-white mb-0.5 group-hover:text-amber-400 transition-colors duration-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-comments app-ico" aria-hidden="true"></i> Chat com Especialista
+                </h4>
+                <p class="text-zinc-400 text-xs font-light leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">Tire dúvidas e negocie diretamente com nossa equipe em tempo real.</p>
+              </div>
+              <!-- Card 2 -->
+              <div class="group relative bg-white/[0.03] hover:bg-white/[0.07] p-3.5 sm:p-4 rounded-xl border border-white/10 hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer overflow-hidden backdrop-blur-md">
+                <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <h4 class="font-bold text-xs sm:text-sm text-white mb-0.5 group-hover:text-amber-400 transition-colors duration-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-car-side app-ico" aria-hidden="true"></i> Agendar Test-Drive
+                </h4>
+                <p class="text-zinc-400 text-xs font-light leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">Escolha o dia, horário e veículo ideal para acelerar.</p>
+              </div>
+              <!-- Card 3 -->
+              <div class="group relative bg-white/[0.03] hover:bg-white/[0.07] p-3.5 sm:p-4 rounded-xl border border-white/10 hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer overflow-hidden backdrop-blur-md">
+                <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <h4 class="font-bold text-xs sm:text-sm text-white mb-0.5 group-hover:text-amber-400 transition-colors duration-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-chart-line app-ico" aria-hidden="true"></i> Status do Financiamento
+                </h4>
+                <p class="text-zinc-400 text-xs font-light leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">Acompanhe a análise de crédito e propostas em tempo real.</p>
+              </div>
+              <!-- Card 4 -->
+              <div class="group relative bg-white/[0.03] hover:bg-white/[0.07] p-3.5 sm:p-4 rounded-xl border border-white/10 hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer overflow-hidden backdrop-blur-md">
+                <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <h4 class="font-bold text-xs sm:text-sm text-white mb-0.5 group-hover:text-amber-400 transition-colors duration-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-file-signature app-ico" aria-hidden="true"></i> Assinatura Digital
+                </h4>
+                <p class="text-zinc-400 text-xs font-light leading-relaxed group-hover:text-zinc-300 transition-colors duration-300">Envie documentos e assine o contrato direto pelo celular.</p>
+              </div>
+            </div>
+
+            <!-- Botões de CTA Ajustados para o Tema Dark -->
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <!-- Botão Principal: Apple Light Style (Branco com Texto Preto) -->
+              <a href="#appSection"
+                class="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-zinc-200 text-black text-xs sm:text-sm font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 ease-out cursor-pointer overflow-hidden">
+                <i class="fa-brands fa-apple text-base transition-transform duration-300 group-hover:scale-110"></i>
+                <span>Acessar o App</span>
+              </a>
+              <!-- Botão Secundário: Outline Glassmorphism -->
+              <a href="https://wa.me/" target="_blank"
+                class="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/20 hover:border-emerald-500/40 text-white hover:text-emerald-400 text-xs sm:text-sm font-medium shadow-xs hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 ease-out cursor-pointer overflow-hidden backdrop-blur-md">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12"></i>
+                <span>Falar com um Vendedor</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Coluna da Direita: iPhone com o app da A3 Motors (vídeo do Porsche na tela) -->
+          <div id="appPhone" class="lg:col-span-5 w-full flex justify-center">
+            <div class="a3phone" aria-hidden="true">
+              <div class="a3phone__stage">
+                <div class="a3phone__pv">
+                  <div class="a3screen">
+                    <div class="a3screen__top"><span class="a3screen__logo">A3</span><span class="a3screen__brand">A3 MOTORS</span><i class="fa-regular fa-bell a3screen__bell"></i></div>
+                    <p class="a3screen__hi">Novidade no estoque</p>
+                    <div class="a3screen__video"><video id="appPhoneVideo" muted playsinline loop preload="none" data-src="prosche-seção3.mp4"></video><span class="a3screen__tag">Porsche 911 GT3 RS</span></div>
+                    <div class="a3screen__row"><span><i class="fa-solid fa-calendar-check"></i>Test-drive</span><span><i class="fa-solid fa-chart-line"></i>Financiamento</span><span><i class="fa-solid fa-file-signature"></i>Contrato</span></div>
+                    <div class="a3screen__cta"><i class="fa-solid fa-download"></i>Baixar o app</div>
+                    <p class="a3screen__foot">Disponível para iPhone e Android</p>
+                  </div>
+                </div>
+                <img class="a3phone__still" src="iphone.webp" alt="" width="753" height="1074">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SESSÃO 6: FOOTER & CONTATO (DARK GLASSMORPHISM COM IMAGEM DE FUNDO RESPONSIVA) -->
+  <footer id="contato"
+    class="relative border-t border-white/10 py-16 sm:py-20 px-6 font-sans text-xs text-white bg-cover bg-center bg-no-repeat overflow-hidden bg-black"
+    style="background-image: url('imagem-de-fundo.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    
+    <!-- Overlay Escuro Vitrificado para Garantir Legibilidade de Alto Luxo -->
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-[4px] pointer-events-none z-0"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 relative z-10">
+      <!-- Col 1 -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-black font-extrabold flex items-center justify-center font-sans shadow-lg shadow-amber-500/20">
+            A3</div>
+          <span class="font-bold text-lg text-white font-sans tracking-tight">A3 MOTORS</span>
+        </div>
+        <p class="text-zinc-300 text-xs leading-relaxed font-sans font-light">
+          Concessionária e estúdio de alta performance dedicado à curadoria e venda de supercarros e veículos de alto padrão.
+        </p>
+      </div>
+
+      <!-- Col 2 -->
+      <div>
+        <h5 class="text-amber-400 font-bold mb-4 uppercase tracking-wider font-sans text-xs">// LOCALIZAÇÃO
+        </h5>
+        <p class="text-zinc-300 leading-relaxed font-sans font-light">
+          Av. Europa, 1200 - Jardins<br>
+          São Paulo - SP, 01449-000<br>
+          <span class="text-white font-semibold mt-1 block">Atendimento exclusivamente com agendamento prévio.</span>
+        </p>
+      </div>
+
+      <!-- Col 3 -->
+      <div>
+        <h5 class="text-amber-400 font-bold mb-4 uppercase tracking-wider font-sans text-xs">// HORÁRIOS</h5>
+        <p class="text-zinc-300 leading-relaxed font-sans font-light">
+          Segunda a Sexta: 08:00 - 19:00<br>
+          Sábado: 08:00 - 14:00<br>
+          <span class="text-white font-semibold mt-1 block">Domingo: Fechado (Recebimento VIP)</span>
+        </p>
+      </div>
+
+      <!-- Col 4 -->
+      <div>
+        <h5 class="text-amber-400 font-bold mb-4 uppercase tracking-wider font-sans text-xs">// REDES & CONTATO</h5>
+        <div class="flex gap-4 text-lg text-white">
+          <a href="#"
+            class="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center text-white hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all shadow-md backdrop-blur-md"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="#"
+            class="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center text-white hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all shadow-md backdrop-blur-md"><i
+              class="fa-brands fa-whatsapp"></i></a>
+          <a href="#"
+            class="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center text-white hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-all shadow-md backdrop-blur-md"><i
+              class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-zinc-400 relative z-10 font-sans">
+      <div>© 2026 A3 Motors. Todos os direitos reservados.</div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition-colors">Termos de Privacidade</a>
+        <a href="#" class="hover:text-white transition-colors">Garantia Cautelar</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JS -->
+  <script src="main.js"></script>
+  <script src="a3.js"></script>
+</body>
+
+</html>

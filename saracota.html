@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saracota — como funciona · Vinícius</title>
+<meta name="description" content="Saracota: robô que cota material de construção em cinco fornecedores ao mesmo tempo, sem API. Arquitetura, fluxo e desafios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="saracota.css">
+</head>
+<body class="sp">
+
+<header class="nav">
+  <a href="index.html" class="nav__brand" aria-label="Vinícius, início">
+    <svg class="nav__v" viewBox="0 0 40 34" aria-hidden="true"><path d="M2 2h9l9 20 9-20h9L22 32h-4z"/></svg>
+  </a>
+  <nav class="nav__links" aria-label="Seções">
+    <a href="index.html">Início</a>
+    <a href="index.html#projetos">Projetos</a>
+    <a href="saracota.html" class="is-on">Saracota</a>
+    <a href="index.html#sobre">Sobre</a>
+  </nav>
+  <a href="#painel" class="btn btn--line nav__cv" data-open-panel>Abrir o painel</a>
+</header>
+
+<main>
+  <!-- TOPO -->
+  <section class="sp-hero">
+    <div class="sp-hero__text">
+      <a class="sp-back" href="index.html#projetos">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+        Voltar ao portfólio
+      </a>
+      <p class="eyebrow eyebrow--line">Projeto principal</p>
+      <h1 class="sp-hero__title">Saracota</h1>
+      <p class="sp-hero__lead">Um robô que cota material de construção em cinco fornecedores ao mesmo tempo. Sem API: ele usa o site de cada um, como uma pessoa faria.</p>
+      <p class="sp-role"><b>Meu papel: tudo, da ideia ao produto no ar.</b> Tive a ideia, desenhei a arquitetura e o fluxo da cotação, defini como os itens da lista são lidos e entendidos, construí a automação que entra nos sites, monta o carrinho e lê os preços, criei o motor de substituição, o banco de dados e o painel do lojista, e testei tudo com pedidos reais.</p>
+      <div class="sp-hero__ctas">
+        <button class="btn btn--red" type="button" data-open-panel>Abrir o painel
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </button>
+        <a class="btn btn--ghost" href="https://saracota.com.br" target="_blank" rel="noopener">saracota.com.br</a>
+      </div>
+      <ul class="sp-facts">
+        <li><strong>5</strong><span>fornecedores em paralelo</span></li>
+        <li><strong>4m26s</strong><span>34 itens cotados num fornecedor</span></li>
+        <li><strong>460</strong><span>casos reais no teste do motor</span></li>
+      </ul>
+    </div>
+    <div class="sp-hero__side">
+      <div class="sp-hero__media ph-host" data-ph-grow="0" data-ph-pop="1">
+        <!-- telas pequenas: só a animação da logo -->
+        <video class="sp-hero__logo" autoplay muted playsinline preload="metadata" poster="img/saracota-neon.webp">
+          <source src="media/saracota-logo.webm" type="video/webm">
+          <source src="media/saracota-logo.mp4" type="video/mp4">
+        </video>
+        <div class="ph" aria-hidden="true">
+          <div class="ph__stage">
+            <div class="ph__idle">
+              <div class="ph__pv"><video class="ph__preview" muted playsinline loop preload="none" poster="img/saracota-preview-poster.jpg" data-src="media/saracota-preview.mp4"></video></div>
+              <img class="ph__still" src="img/ph-idle.webp" alt="" width="753" height="1074">
+              <button class="ph__hit" type="button" tabindex="-1" data-watch></button>
+            </div>
+            <video class="ph__anim ph__anim--in" muted playsinline preload="none" data-src="media/ph-in.mp4"></video>
+            <video class="ph__anim ph__anim--out" muted playsinline preload="none" data-src="media/ph-out.mp4"></video>
+            <div class="ph__screen">
+              <video class="ph__video" playsinline preload="none" poster="img/saracota-video-poster-wide.jpg" data-src="media/saracota-video-wide.mp4"></video>
+            </div>
+          </div>
+          <div class="ph__ui">
+            <button class="ph__btn ph__close" type="button" aria-label="Fechar o vídeo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            <button class="ph__btn ph__mute" type="button" aria-label="Tirar o som"><svg class="i-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><svg class="i-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
+            <div class="ph__bar"><span></span></div>
+          </div>
+        </div>
+      </div>
+      <button class="sp-watch" type="button" data-watch>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+        <span>Clique no celular para assistir ao vídeo de 2 minutos</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ARQUITETURA -->
+  <section class="sp-sec" id="arquitetura" aria-labelledby="arq-title">
+    <header class="sp-sec__head">
+      <div>
+        <p class="eyebrow eyebrow--line">Como funciona</p>
+        <h2 id="arq-title" class="sp-sec__title">As peças da <em>Saracota.</em></h2>
+      </div>
+    </header>
+
+    <div class="board">
+      <div class="board__bar">
+        <span class="board__crumb">Saracota <i>/</i> <b>Arquitetura</b></span>
+        <span class="board__legend"><span class="lg lg--app">Painel</span><span class="lg lg--core">Motor</span><span class="lg lg--db">Banco</span><span class="lg lg--site">Fornecedor</span></span>
+      </div>
+      <div class="board__scroll">
+        <div class="board__canvas" data-w="1600" data-h="430">
+          <svg class="board__edges" viewBox="0 0 1600 430" aria-hidden="true"></svg>
+          <!-- nós: data-x/y = canto superior esquerdo no quadro de 1280x620 -->
+          <div class="node node--app" data-id="painel" data-x="20" data-y="186"><span class="node__ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="node__t"><b>Painel do lojista</b><small>onde o lojista trabalha</small></span></div>
+          <div class="node node--core" data-id="api" data-x="300" data-y="70"><span class="node__ico"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg></span><span class="node__t"><b>Recebe e valida</b><small>API · normaliza os itens</small></span></div>
+          <div class="node node--db" data-id="banco" data-x="300" data-y="300"><span class="node__ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span><span class="node__t"><b>Banco de dados</b><small>cotações e histórico</small></span></div>
+          <div class="node node--core" data-id="fila" data-x="590" data-y="70"><span class="node__ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="node__t"><b>Fila e worker</b><small>2 cotações por vez</small></span></div>
+          <div class="node node--db" data-id="cofre" data-x="910" data-y="8"><span class="node__ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="node__t"><b>Cofre de senhas</b><small>senhas criptografadas</small></span></div>
+          <div class="node node--core node--hub" data-id="robo" data-x="900" data-y="186"><span class="node__ico"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M2 13h3M19 13h3"/></svg></span><span class="node__t"><b>Robô de cotação</b><small>entra nos sites e dá nota</small></span></div>
+          <div class="node node--site" data-id="s1" data-x="1400" data-y="14"><span class="node__dot"></span><span class="node__t"><b>Fornecedor A</b></span></div>
+          <div class="node node--site" data-id="s2" data-x="1400" data-y="98"><span class="node__dot"></span><span class="node__t"><b>Fornecedor B</b></span></div>
+          <div class="node node--site" data-id="s3" data-x="1400" data-y="182"><span class="node__dot"></span><span class="node__t"><b>Fornecedor C</b></span></div>
+          <div class="node node--site" data-id="s4" data-x="1400" data-y="266"><span class="node__dot"></span><span class="node__t"><b>Fornecedor D</b></span></div>
+          <div class="node node--site" data-id="s5" data-x="1400" data-y="350"><span class="node__dot"></span><span class="node__t"><b>Fornecedor E</b></span></div>
+        </div>
+      </div>
+      <p class="board__caption" aria-live="polite">Passe o mouse num bloco.</p>
+    </div>
+  </section>
+
+  <!-- CAMINHO DE UMA COTAÇÃO -->
+  <section class="sp-sec" aria-labelledby="path-title">
+    <header class="sp-sec__head">
+      <div>
+        <p class="eyebrow eyebrow--line">Uma cotação, do começo ao fim</p>
+        <h2 id="path-title" class="sp-sec__title">Da lista colada ao <em>preço final.</em></h2>
+      </div>
+    </header>
+    <ol class="path">
+      <li><span>01</span><b>Recebe a lista</b><p>O lojista cola os itens com quantidade e marca, do jeito que escreve no dia a dia.</p></li>
+      <li><span>02</span><b>Entende cada item</b><p>Pincel vira trincha, 1" vira 25 mm. Cada item ganha os termos certos para a busca.</p></li>
+      <li><span>03</span><b>Entra nos sites</b><p>O robô faz login, escolhe a filial, busca e põe no carrinho, nos cinco fornecedores ao mesmo tempo.</p></li>
+      <li><span>04</span><b>Confere e substitui</b><p>Cada produto recebe uma nota. Se não existe, procura um parecido, com as mesmas medidas e preço próximo.</p></li>
+      <li><span>05</span><b>Devolve o resumo</b><p>Preço por item e total de cada fornecedor, gravados no banco. A compra nunca é finalizada pelo robô.</p></li>
+    </ol>
+  </section>
+
+  <!-- DESAFIOS -->
+  <section class="sp-sec" aria-labelledby="hard-title">
+    <header class="sp-sec__head">
+      <div>
+        <p class="eyebrow eyebrow--line">O que deu trabalho</p>
+        <h2 id="hard-title" class="sp-sec__title">Problemas reais, <em>resolvidos um por um.</em></h2>
+      </div>
+    </header>
+    <div class="hard">
+      <article class="hard__card"><h3>Nenhum fornecedor tem API</h3><p>Tudo é feito pelo navegador. Cada site tem login, filial, busca e carrinho do seu jeito, então cada um tem a sua configuração.</p></article>
+      <article class="hard__card"><h3>Sites que bloqueiam robôs</h3><p>Recarregar a página chamava captcha. O robô passou a buscar pela barra do site, sem recarregar, e a reaproveitar a sessão de login. Captcha não é burlado.</p></article>
+      <article class="hard__card"><h3>Achar o produto certo</h3><p>"Joelho 1 polegada" e "cotovelo 25 mm" são a mesma peça. O motor dá nota a cada resultado e só aceita quando as medidas batem.</p></article>
+      <article class="hard__card"><h3>Senhas dos fornecedores</h3><p>O lojista entrega o login dele. As senhas ficam criptografadas num cofre e só são abertas na hora de entrar no site.</p></article>
+    </div>
+  </section>
+
+  <!-- CHAMADA -->
+  <section class="sp-cta">
+    <h2>Quer ver a Saracota <em>funcionando de verdade?</em></h2>
+    <p>O painel aqui é só uma demonstração, sem banco de dados. Me chama que eu mostro uma cotação real rodando.</p>
+    <div class="sp-hero__ctas">
+      <button class="btn btn--red" type="button" data-open-panel>Abrir o painel de demonstração</button>
+      <a class="btn btn--ghost" href="index.html#projetos">Ver outros projetos</a>
+    </div>
+  </section>
+</main>
+
+<div class="vfull" hidden>
+  <button class="vfull__close" type="button" aria-label="Fechar o vídeo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <video class="vfull__video" controls playsinline preload="none" poster="img/saracota-video-poster.jpg"></video>
+</div>
+
+<!-- painel de demonstração (abre por cima da página) -->
+<div class="demo" id="painel" role="dialog" aria-modal="true" aria-label="Painel da Saracota, demonstração" hidden>
+  <div class="demo__bar">
+    <span class="demo__title"><img src="img/saracota-mark.png" alt="" width="20" height="22"> Painel da Saracota <em>demonstração</em></span>
+    <span class="demo__note">Sem banco de dados: nada é salvo nem cotado de verdade.</span>
+    <button class="demo__close" type="button" aria-label="Fechar o painel">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <iframe class="demo__frame" title="Painel da Saracota" data-src="saracota-demo/index.html"></iframe>
+</div>
+
+<script src="saracota.js"></script>
+<script src="phone.js"></script>
+</body>
+</html>

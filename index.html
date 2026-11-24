@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vinícius — Automação e sites</title>
+<meta name="description" content="Vinícius: automações com robôs, integrações e banco de dados, e sites que vendem. Projeto principal: Saracota.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="#inicio" class="nav__brand" aria-label="Vinícius, início">
+    <svg class="nav__v" viewBox="0 0 40 34" aria-hidden="true"><path d="M2 2h9l9 20 9-20h9L22 32h-4z"/></svg>
+  </a>
+  <nav class="nav__links" aria-label="Seções">
+    <a href="#inicio" class="is-on">Início</a>
+    <a href="#projetos">Projetos</a>
+    <a href="saracota.html" class="nav__sara">Saracota</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a href="saracota.html" class="btn btn--line nav__cv">Conhecer a Saracota</a>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <img class="hero__bg" src="img/hero.webp" alt="" width="2400" height="1351" fetchpriority="high">
+    <div class="hero__text">
+      <h1 class="hero__name">VINÍCIUS</h1>
+      <p class="hero__lead">Automações e sites que trabalham enquanto você dorme.</p>
+      <a href="#projetos" class="btn btn--red hero__cta">Ver projetos
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="work" id="projetos" aria-labelledby="work-title">
+    <header class="work__head">
+      <h2 id="work-title" class="work__brand">
+        <img src="img/saracota-mark.png" alt="" width="64" height="70">
+        <span class="work__title">Saracota</span>
+      </h2>
+    </header>
+
+    <!-- Saracota: destaque -->
+    <article class="case case--main ph-host" id="saracota">
+      <div class="case__copy">
+        <h3 class="case__title">Cotação automatizada: o que levava <em>8 horas</em> agora leva minutos.</h3>
+        <p class="case__text">A Saracota nasceu de uma necessidade real das lojas de material de construção: cotar a mesma lista, item por item, no site de cada fornecedor. Um trabalho repetitivo, que ninguém queria fazer e que tomava dias. Hoje ela faz isso sozinha, guarda tudo num banco de dados e entrega um relatório pronto para comparar.</p>
+        <div class="case__compare" aria-label="Antes cerca de 8 horas, agora cerca de 15 minutos">
+          <div><small>Antes</small><b>~8 horas</b><span>de cotação manual</span></div>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          <div class="is-now"><small>Agora</small><b>~15 minutos</b><span>com a Saracota</span></div>
+        </div>
+        <p class="case__hint">Assista ao vídeo de 2 minutos para ver como funciona, ou conheça a Saracota por dentro.</p>
+        <div class="case__actions">
+          <button class="btn btn--red" type="button" data-watch>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+            Assistir ao vídeo
+          </button>
+          <a class="btn btn--ghost" href="saracota.html">Conhecer a Saracota</a>
+        </div>
+      </div>
+      <div class="case__side" aria-hidden="true"></div>
+
+      <!-- celular: parado flutuando com uma prévia; ao clicar, vira e cobre o card inteiro -->
+      <div class="ph" aria-hidden="true">
+        <div class="ph__stage">
+          <div class="ph__idle">
+            <div class="ph__pv"><video class="ph__preview" muted playsinline loop preload="none" poster="img/saracota-preview-poster.jpg" data-src="media/saracota-preview.mp4"></video></div>
+            <img class="ph__still" src="img/ph-idle.webp" alt="" width="753" height="1074">
+            <button class="ph__hit" type="button" tabindex="-1" data-watch></button>
+          </div>
+          <video class="ph__anim ph__anim--in" muted playsinline preload="none" data-src="media/ph-in.mp4"></video>
+          <video class="ph__anim ph__anim--out" muted playsinline preload="none" data-src="media/ph-out.mp4"></video>
+          <div class="ph__screen">
+            <video class="ph__video" playsinline preload="none" poster="img/saracota-video-poster-wide.jpg" data-src="media/saracota-video-wide.mp4"></video>
+          </div>
+        </div>
+        <div class="ph__ui">
+          <button class="ph__btn ph__close" type="button" aria-label="Fechar o vídeo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          <button class="ph__btn ph__mute" type="button" aria-label="Tirar o som"><svg class="i-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><svg class="i-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
+          <div class="ph__bar"><span></span></div>
+        </div>
+      </div>
+
+      <!-- abertura: animação da marca; depois some da direita para a esquerda e vira um "antes/depois" -->
+      <div class="intro" aria-hidden="true">
+        <video class="intro__video" muted playsinline preload="auto">
+          <source src="media/saracota-logo.webm" type="video/webm">
+          <source src="media/saracota-logo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="intro__handle" role="slider" tabindex="0" aria-label="Arraste para comparar a abertura com as informações do projeto" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+        <span class="intro__knob" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6"/><path d="m15 6 6 6-6 6"/></svg>
+        </span>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about" id="sobre" aria-labelledby="about-title">
+    <div class="about__intro">
+      <p class="eyebrow eyebrow--line">Sobre mim</p>
+      <h2 id="about-title" class="about__title">Mais que um profissional, um parceiro na <em>sua visão.</em></h2>
+      <p class="about__text">Quero atuar como Analista de Automação Low-Code Júnior: criar fluxos automatizados, integrar sistemas e tirar trabalho repetitivo dos processos. Minha experiência vem de projetos próprios, feitos do zero com apoio de ferramentas de IA. Estou construindo minha base técnica e aprendo rápido na prática.</p>
+      <a href="#mais-projetos" class="btn btn--line about__cta">Ver meus projetos
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="about__card">
+      <ul class="about__facts">
+        <li><span class="about__ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m13.5 5-3 14"/></svg></span><div><strong>10+</strong><span>projetos criados</span></div></li>
+        <li><span class="about__ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2"/></svg></span><div><strong>1,5 ano</strong><span>criando com tecnologia</span></div></li>
+        <li><span class="about__ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg></span><div><strong>5</strong><span>fornecedores no robô</span></div></li>
+      </ul>
+      <div class="about__story">
+        <h3>Minha jornada</h3>
+        <p>Comecei com projetos próprios: sites e apps para negócios locais, usando IA como apoio. A Saracota, meu principal projeto, me levou para a automação: automação de navegador, integração de sistemas, tratamento de dados e muito problema para resolver. Ainda tenho muito a aprender, e é isso que busco num ambiente profissional.</p>
+        <div class="sign" role="img" aria-label="Assinatura: Vinícius">
+          <img class="sign__white" src="img/sign-white.webp" alt="" width="1200" height="443">
+          <img class="sign__red" src="img/sign-red.webp" alt="" width="1200" height="443">
+          <img class="sign__shine" src="img/sign-red.webp" alt="" width="1200" height="443">
+        </div>
+      </div>
+    </div>
+    <div class="about__skills">
+      <div class="skl">
+        <h3>Conhecimentos em desenvolvimento <span class="skl__tag">estudando agora</span></h3>
+        <ul class="skl__list">
+          <li>Lógica de programação e fundamentos de JavaScript</li>
+          <li>JSON e manipulação de dados</li>
+          <li>APIs REST e requisições HTTP</li>
+          <li>Webhooks e integrações</li>
+          <li>Automação de processos com n8n e Make</li>
+          <li>Automação de navegador com Playwright</li>
+          <li>Desenvolvimento com ferramentas de IA</li>
+        </ul>
+      </div>
+      <div class="skl">
+        <h3>Como eu trabalho</h3>
+        <ul class="skl__list">
+          <li>Aprendo sozinho e pesquiso ferramentas novas</li>
+          <li>Resolvo problemas com raciocínio lógico</li>
+          <li>Enxergo processos e onde dá para automatizar</li>
+          <li>Organizo e documento meus projetos</li>
+        </ul>
+        <h3 class="skl__sub">Formação</h3>
+        <p class="skl__note">Ensino Médio completo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIS PROJETOS (cards lado a lado, troca por botão, arrasto ou rolagem lateral) -->
+  <section class="more" id="mais-projetos" aria-labelledby="more-title" aria-roledescription="carrossel">
+    <header class="more__head">
+      <div>
+        <p class="eyebrow eyebrow--line">Projetos</p>
+        <h2 id="more-title" class="more__title">Alguns dos projetos que <em>já construí.</em></h2>
+      </div>
+      <p class="more__hint">Selecione o projeto que você quer ver</p>
+    </header>
+    <div class="deck" tabindex="0" aria-label="Projetos. Use as setas para trocar.">
+        <ul class="deck__track">
+        <li class="slide" data-i="0" aria-roledescription="slide" aria-label="1 de 7: Saracota">
+          <article class="pc">
+            <div class="pc__media"><img src="img/saracota-neon.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>01</span>Automação · SaaS</p>
+              <h3 class="pc__name">Saracota</h3>
+              <p class="pc__desc">Um robô que entra no site de cinco fornecedores, monta o carrinho e devolve a cotação pronta. Sem API e sem digitar nada.</p>
+              <a class="link pc__link" href="saracota.html">Ver o projeto <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        <li class="slide" data-i="1" aria-roledescription="slide" aria-label="2 de 7: Edulos">
+          <article class="pc">
+            <div class="pc__media"><img src="img/edulos.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>02</span>Site · Imobiliária</p>
+              <h3 class="pc__name">Edulos</h3>
+              <p class="pc__desc">Site de lançamento frente-mar. A torre acende o andar que você escolhe e a obra aparece etapa por etapa.</p>
+              <a class="link pc__link" href="projetos/edulos/" data-view="edulos" data-title="Edulos">Ver funcionando <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        <li class="slide" data-i="2" aria-roledescription="slide" aria-label="3 de 7: Gabriel Motos">
+          <article class="pc">
+            <div class="pc__media"><img src="img/gabriel.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>03</span>Site · Loja de motos</p>
+              <h3 class="pc__name">Gabriel Motos</h3>
+              <p class="pc__desc">Vinte e seis motos com filtros por estilo. O atendimento já chega no WhatsApp do vendedor com a moto escolhida.</p>
+              <a class="link pc__link" href="projetos/gabriel-motos/" data-view="gabriel-motos" data-title="Gabriel Motos">Ver funcionando <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        <li class="slide" data-i="3" aria-roledescription="slide" aria-label="4 de 7: Obsidian">
+          <article class="pc">
+            <div class="pc__media"><img src="img/obsidian.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>04</span>App · Estética automotiva</p>
+              <h3 class="pc__name">Obsidian</h3>
+              <p class="pc__desc">O cliente agenda o serviço e paga pelo app. O dono acompanha tudo num painel só.</p>
+              <a class="link pc__link" href="projetos/obsidian/" data-view="obsidian" data-title="Obsidian">Ver funcionando <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        <li class="slide" data-i="4" aria-roledescription="slide" aria-label="5 de 7: O Rei do Piso">
+          <article class="pc">
+            <div class="pc__media"><img src="img/pisos.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>05</span>App · Loja de pisos</p>
+              <h3 class="pc__name">O Rei do Piso</h3>
+              <p class="pc__desc">Um app, três visões: cliente, vendedor e dono. Abre direto pelo link do WhatsApp.</p>
+              <a class="link pc__link" href="projetos/rei-do-piso/" data-view="rei-do-piso" data-title="O Rei do Piso">Ver funcionando <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        <li class="slide" data-i="5" aria-roledescription="slide" aria-label="6 de 7: Bruno Salgados">
+          <article class="pc">
+            <div class="pc__media"><img src="img/bruno.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>06</span>App · Pedidos</p>
+              <h3 class="pc__name">Bruno Salgados</h3>
+              <p class="pc__desc">Cardápio e sacola para o cliente. Pedidos, caixa e relatórios para o dono, em tempo real.</p>
+              <a class="link pc__link" href="projetos/bruno-salgados/" data-view="bruno-salgados" data-title="Bruno Salgados">Ver funcionando <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        <li class="slide" data-i="6" aria-roledescription="slide" aria-label="7 de 7: A3 Motors">
+          <article class="pc">
+            <div class="pc__media"><img src="img/a3-motors.webp" alt="" loading="lazy" width="1200" height="750"></div>
+            <div class="pc__text">
+              <p class="pc__meta"><span>07</span>Site · Loja de carros</p>
+              <h3 class="pc__name">A3 Motors</h3>
+              <p class="pc__desc">Seminovos e supercarros. Busca por marca, modelo, ano e preço, e o Audi R8 entrando na garagem logo na abertura.</p>
+              <a class="link pc__link" href="projetos/a3-motors/" data-view="a3-motors" data-title="A3 Motors">Ver funcionando <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </article>
+        </li>
+        </ul>
+    </div>
+    <div class="more__ctrl">
+      <span class="more__count"><b>01</b> / 07</span>
+      <div class="more__dots"><button class="more__dot" type="button" data-go="0" aria-label="Saracota"><span></span></button><button class="more__dot" type="button" data-go="1" aria-label="Edulos"><span></span></button><button class="more__dot" type="button" data-go="2" aria-label="Gabriel Motos"><span></span></button><button class="more__dot" type="button" data-go="3" aria-label="Obsidian"><span></span></button><button class="more__dot" type="button" data-go="4" aria-label="O Rei do Piso"><span></span></button><button class="more__dot" type="button" data-go="5" aria-label="Bruno Salgados"><span></span></button><button class="more__dot" type="button" data-go="6" aria-label="A3 Motors"><span></span></button></div>
+      <div class="more__nav">
+        <button class="more__btn" type="button" data-dir="-1" aria-label="Projeto anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></button>
+        <button class="more__btn more__btn--next" type="button" data-dir="1" aria-label="Próximo projeto"><span>Próximo</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="vfull" hidden>
+  <button class="vfull__close" type="button" aria-label="Fechar o vídeo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <video class="vfull__video" controls playsinline preload="none" poster="img/saracota-video-poster.jpg" data-src="media/saracota-video.mp4"></video>
+</div>
+
+<script src="main.js"></script>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+  <div class="viewer__bar">
+    <button class="viewer__close" type="button" data-close aria-label="Fechar o projeto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <p class="viewer__title" id="viewerTitle">Projeto</p>
+    <div class="viewer__modes" role="group" aria-label="Tamanho da tela">
+      <button type="button" data-mode="desk" aria-pressed="true">Computador</button>
+      <button type="button" data-mode="phone" aria-pressed="false">Celular</button>
+    </div>
+    <a class="viewer__out" id="viewerOut" href="#" target="_blank" rel="noopener">Abrir em nova aba <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+  </div>
+  <div class="viewer__stage">
+    <div class="viewer__frame"><iframe id="viewerFrame" title="Projeto funcionando" allow="autoplay; fullscreen" loading="eager"></iframe><span class="viewer__load" aria-hidden="true">Carregando o projeto…</span></div>
+  </div>
+</div>
+<script src="phone.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>
